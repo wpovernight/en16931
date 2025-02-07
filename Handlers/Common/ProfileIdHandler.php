@@ -13,7 +13,7 @@ class ProfileIdHandler extends UblHandler {
 	public function handle( $data, $options = array() ) {
 		$profileID = array(
 			'name'  => 'cbc:ProfileID',
-			'value' => 'urn:fdc:peppol.eu:2017:poacc:billing:01:1.0',
+			'value' => 'urn:cen.eu:en16931:2017',
 		);
 
 		$data[] = apply_filters( 'wpo_ips_en16931_handle_ProfileID', $profileID, $data, $options, $this );
