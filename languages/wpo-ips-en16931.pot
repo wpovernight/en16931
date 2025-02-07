@@ -1,0 +1,39 @@
+# Copyright (C) 2025 WP Overnight
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: PDF Invoices & Packing Slips for WooCommerce - EN 16931\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/en16931\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-02-07T12:05:10+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: wpo-ips-en16931\n"
+
+#. Plugin Name of the plugin
+#: index.php
+msgid "PDF Invoices & Packing Slips for WooCommerce - EN 16931"
+msgstr ""
+
+#. Author of the plugin
+#: index.php
+msgid "WP Overnight"
+msgstr ""
+
+#. Author URI of the plugin
+#: index.php
+msgid "https://www.wpovernight.com"
+msgstr ""
+
+#: Handlers/Common/PaymentTermsHandler.php:17
+msgid "Invoice has been paid."
+msgstr ""
+
+#. translators: %d: Due date days
+#: Handlers/Common/PaymentTermsHandler.php:24
+msgid "Net within %d days."
+msgstr ""
