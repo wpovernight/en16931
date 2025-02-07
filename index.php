@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name: PDF Invoices & Packing Slips for WooCommerce - EN 16931
+ * Version:     1.0.0
  * Author:      WP Overnight
  * Author URI:  https://www.wpovernight.com
  * License:     GPLv3
