@@ -70,6 +70,29 @@ class InvoiceLineHandler extends UblHandler {
 				),
 			);
 			
+			if ( ! empty( $this->order_coupons_data['items'][ $item_id ] ) ) {
+				$invoiceLine['value'][] = array(
+					'name'  => 'cac:AllowanceCharge',
+					'value' => array(
+						array(
+							'name'  => 'cbc:ChargeIndicator',
+							'value' => 'false',
+						),
+						array(
+							'name'  => 'cbc:AllowanceChargeReason',
+							'value' => __( 'Discount', 'wpo-ips-en16931' ),
+						),
+						array(
+							'name'  => 'cbc:Amount',
+							'value' => round( $this->order_coupons_data['items'][ $item_id ]['discount'], 2 ),
+							'attributes' => array(
+								'currencyID' => $this->document->order->get_currency(),
+							),
+						),
+					),
+				);
+			}
+			
 			$invoiceLineItem = array(
 				'name'  => 'cac:Item',
 				'value' => array(
