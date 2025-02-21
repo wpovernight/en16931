@@ -13,6 +13,7 @@ class InvoiceLineHandler extends UblHandler {
 	public function handle( $data, $options = array() ) {
 		$items        = $this->document->order->get_items( array( 'line_item', 'fee', 'shipping' ) );
 		$orderTaxData = $this->document->order_tax_data;
+		$couponsData  = $this->document->order_coupons_data;
 
 		// Build the tax totals array
 		foreach ( $items as $item_id => $item ) {
@@ -70,7 +71,7 @@ class InvoiceLineHandler extends UblHandler {
 				),
 			);
 			
-			if ( ! empty( $this->order_coupons_data['items'][ $item_id ] ) ) {
+			if ( ! empty( $couponsData['items'][ $item_id ] ) ) {
 				$invoiceLine['value'][] = array(
 					'name'  => 'cac:AllowanceCharge',
 					'value' => array(
@@ -84,7 +85,7 @@ class InvoiceLineHandler extends UblHandler {
 						),
 						array(
 							'name'  => 'cbc:Amount',
-							'value' => round( $this->order_coupons_data['items'][ $item_id ]['discount'], 2 ),
+							'value' => round( $couponsData['items'][ $item_id ]['discount'], 2 ),
 							'attributes' => array(
 								'currencyID' => $this->document->order->get_currency(),
 							),
