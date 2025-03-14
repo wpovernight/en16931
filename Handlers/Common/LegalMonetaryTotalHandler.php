@@ -11,39 +11,33 @@ if ( ! defined( 'ABSPATH' ) ) {
 class LegalMonetaryTotalHandler extends UblHandler {
 
 	public function handle( $data, $options = array() ) {
-		$total_inc_tax = $this->document->order->get_total();
 		$total_exc_tax = $this->get_order_items_total();
+		$total_tax     = round( $this->document->order->get_total_tax(), 2 );
+		$total_inc_tax = round( $total_exc_tax + $total_tax, 2 );
+		$currency      = $this->document->order->get_currency();
 
 		$legalMonetaryTotal = array(
 			'name'  => 'cac:LegalMonetaryTotal',
 			'value' => array(
 				array(
 					'name'       => 'cbc:LineExtensionAmount',
-					'value'      => $total_exc_tax,
-					'attributes' => array(
-						'currencyID' => $this->document->order->get_currency(),
-					),
+					'value'      => number_format( $total_exc_tax, 2, '.', '' ),
+					'attributes' => array( 'currencyID' => $currency ),
 				),
 				array(
 					'name'       => 'cbc:TaxExclusiveAmount',
-					'value'      => $total_exc_tax,
-					'attributes' => array(
-						'currencyID' => $this->document->order->get_currency(),
-					),
+					'value'      => number_format( $total_exc_tax, 2, '.', '' ),
+					'attributes' => array( 'currencyID' => $currency ),
 				),
 				array(
 					'name'       => 'cbc:TaxInclusiveAmount',
-					'value'      => $total_inc_tax,
-					'attributes' => array(
-						'currencyID' => $this->document->order->get_currency(),
-					),
+					'value'      => number_format( $total_inc_tax, 2, '.', '' ),
+					'attributes' => array( 'currencyID' => $currency ),
 				),
 				array(
 					'name'       => 'cbc:PayableAmount',
-					'value'      => $total_inc_tax,
-					'attributes' => array(
-						'currencyID' => $this->document->order->get_currency(),
-					),
+					'value'      => number_format( $total_inc_tax, 2, '.', '' ),
+					'attributes' => array( 'currencyID' => $currency ),
 				),
 			),
 		);
@@ -58,7 +52,7 @@ class LegalMonetaryTotalHandler extends UblHandler {
 		$items       = $this->document->order->get_items( array( 'line_item', 'fee', 'shipping' ) );
 	
 		foreach ( $items as $item ) {
-			$items_total += $item->get_total();
+			$items_total += round( $item->get_total(), 2 );
 		}
 	
 		return round( $items_total, 2 );
